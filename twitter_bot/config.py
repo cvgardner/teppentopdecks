@@ -31,7 +31,7 @@ def test():
     scraper_api = create_scraper()
 
     query = "teppen deck OR deck from:PlayTeppen"
-    fields = ['author_id',
+    tweet_fields = ['author_id',
               'context_annotations', 
               'created_at', 
               'attachments',
@@ -40,7 +40,7 @@ def test():
     media_fields = ['preview_image_url','url']
     tweets = scraper_api.search_recent_tweets(query=query,
                                 expansions=expansions,
-                                tweet_fields=fields,
+                                tweet_fields=tweet_fields,
                                 media_fields=media_fields,
                                 max_results=100)
     for tweet in tweets.data:
