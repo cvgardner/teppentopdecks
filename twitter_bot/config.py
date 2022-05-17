@@ -44,6 +44,6 @@ def test():
                                 media_fields=media_fields,
                                 max_results=100)
     for tweet in tweets.data:
-        print(tweet.text)
+        #print(tweet.text)
         if tweet.attachments is not None:
             print(tweet.attachments)
