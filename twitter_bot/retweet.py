@@ -35,6 +35,7 @@ class RetweetListener(tweepy.StreamingClient):
         #initialize AWS
         self.AWS_REGION = "us-east-1"
         self.S3_BUCKET_NAME = "teppentopdecks"
+        self.S3_FOLDER = "twitter-images/"
         self.s3_client = boto3.client("s3", region_name=self.AWS_REGION)
 
     def on_data(self, raw_data):
@@ -64,7 +65,7 @@ class RetweetListener(tweepy.StreamingClient):
                     content_type = r.headers['content-type']
                     extension = mimetypes.guess_extension(content_type)
 
-                    obj_name = url.split('/')[-1].split('.')[0] + extension
+                    obj_name = self.S3_FOLDER + url.split('/')[-1].split('.')[0] + extension
                     logging.info(f"Uploading {obj_name} to s3.")
                     #check if file exists
                     result = self.s3_client.list_objects_v2(Bucket=self.S3_BUCKET_NAME, Prefix=obj_name)
