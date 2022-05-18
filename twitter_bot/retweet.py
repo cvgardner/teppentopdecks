@@ -107,3 +107,6 @@ def main():
             expansions=expansions,
             media_fields=media_fields
     )
+
+if __name__ == "__main__":
+    main()
